@@ -11,6 +11,12 @@ import getData from '../server/routes/getData.js'
 
 import createResume from './routes/creatingResume.js';
 
+import getResume from './routes/getResumes.js'
+
+import dotenv from 'dotenv';
+
+dotenv.config();
+
 const app = express();
 
 app.use(express.json());
@@ -25,6 +31,8 @@ app.use(cookieParser());
 app.use('/auth', authRoute);
 app.use('/getData', getData);
 app.use('/createresume', createResume);
+
+app.use('/getresumes', getResume);
 
 app.get('/', (req, res) => {
     res.send('Backend is running successfully!');
