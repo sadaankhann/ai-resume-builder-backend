@@ -1,7 +1,6 @@
 import jwt from 'jsonwebtoken';
 import { client } from '../config/db.js';
 
-// req ko pass karo taaki cookies mil sakein, res ki zaroorat nahi hai
 async function getData(req) { 
     try {
         const decoded = await jwt.verify(req.cookies.token, process.env.JWT_SECRET);
@@ -9,7 +8,7 @@ async function getData(req) {
         const query = await client.query(`SELECT * FROM users WHERE email = $1`, [userEmail]);
         
         if (query.rows.length > 0) {
-            return query.rows[0]; // Direct string return karo
+            return query.rows[0]; // Isme user ka poora data (id, name, email) object roop mein milega
         }
         return null;
     } catch (err) {
