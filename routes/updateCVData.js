@@ -10,7 +10,7 @@ const sendingData = async (req, res) => {
 
         const dbData = await getCVData(req,res);
 
-        console.log("dbData", dbData)
+        console.log("req.body.formData", req.body.formData)
 
         const accurateData = Object.entries(req.body.formData).filter(([key, value]) => {
             return value !== '';

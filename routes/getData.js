@@ -5,7 +5,9 @@ import { json } from 'express';
 export async function getCVData(req,res) { 
     try {
 
-        const rightName = req.body.path.replace(".pdf", "");
+        const fileName = req.body.path || req.body.name;
+
+        const rightName = fileName.replace(".pdf", "");
 
         const query = await client.query(`SELECT * FROM cv WHERE documentname = $1`, [rightName]);
 

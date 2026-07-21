@@ -10,10 +10,8 @@ const geminiController = async (req, res) => {
 
     const response = await client.responses.create({
         model: "openai/gpt-oss-20b",
-        input: `Repharse and enhance this, Dont add other things just give me one signal response of it, Because what you will give to me I will straight going to give it to the user without doing anuthing on it : ${req.body.experience}`,
+        input: `Repharse and enhance this and and make a 60 words paragraph using it, Dont add other things just give me one signal response of it, Because what you will give to me I will straight going to give it to the user without doing anuthing on it : ${req.body.formData}`,
     });
-    console.log(response.output_text);
-
 
     return res.status(200).json({
         success: true,
