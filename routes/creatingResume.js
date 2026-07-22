@@ -132,7 +132,7 @@ async function createResume(req, res) {
         currentY -= 20;
 
         const experiencee = experience || "Results-driven professional with a strong foundation in modern web technologies. Experienced in building scalable applications and solving complex problems with clean, efficient code.";
-        page.drawText(summaryStr, {
+        page.drawText(experiencee, {
             x: marginX,
             y: currentY,
             size: 10,

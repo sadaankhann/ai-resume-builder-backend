@@ -1,9 +1,12 @@
 import jwt from 'jsonwebtoken';
 import { client } from '../config/db.js';
+import { getProfileData } from './getData.js';
 export default async function creatingCV(req, res) {
     try {
 
-        const documentName = req.body.name || '';
+        const user = await getProfileData(req,res);
+
+        const documentName = req.body.name;
 
         if (!documentName) {
             return res.status(400).json({
@@ -12,7 +15,7 @@ export default async function creatingCV(req, res) {
             });
         }
 
-        const existingCV = await client.query(`SELECT * FROM cv WHERE documentname = $1`, [documentName]);
+        const existingCV = await client.query(`SELECT * FROM cv WHERE documentname = $1 and user_id = $2`, [documentName, user.id]);
 
         if (existingCV.rows.length > 0) {
             return res.status(409).json({
